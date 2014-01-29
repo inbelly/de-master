@@ -1,16 +1,12 @@
 /**
- * 
+ *
  */
 package com.megalogika.sv.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.megalogika.sv.model.I18Message;
+import com.megalogika.sv.model.ProductCategory;
+import com.megalogika.sv.model.User;
+import com.megalogika.sv.service.I18MessagesService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.annotation.Secured;
@@ -22,28 +18,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.megalogika.sv.model.I18Message;
-import com.megalogika.sv.model.ProductCategory;
-import com.megalogika.sv.model.User;
-import com.megalogika.sv.service.I18MessagesService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author rodu
- *
  */
 @Controller("i18MessagesController")
 @RequestMapping("/i18Messages")
 public class I18MessagesController {
-    
-    private transient final Logger logger = Logger.getLogger(I18MessagesController.class);
-    
+
+    private transient final Logger log = Logger.getLogger(I18MessagesController.class);
+
     @Autowired(required = true)
     private I18MessagesService messagesSrv;
-    
+
     @Autowired(required = true)
     private FrontendService frontendService;
-    
-    
+
+
     @ModelAttribute(FrontendService.KEY_CONTEXT_PATH)
     public String getContextPath(HttpServletRequest request) {
         return frontendService.getContextPath(request);
@@ -63,25 +60,25 @@ public class I18MessagesController {
     public User getCurrentUser() {
         return frontendService.getUserService().getCurrentUser();
     }
-    
+
     @ModelAttribute(FrontendService.SETTINGS_MENU_MARKER)
     public String settingsMenuMark() {
         return "true";
     }
-    
+
     @RequestMapping(method = RequestMethod.GET)
-    @Secured({ "ROLE_ADMIN" })
+    @Secured({"ROLE_ADMIN"})
     public ModelAndView messagesList(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
         return new ModelAndView("messagesList", "messagesList", messagesSrv.getAllMessages());
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @Secured({ "ROLE_ADMIN" })
-    public ModelAndView modifyMessage(@RequestParam(value="code") String code,
-                                      @RequestParam(value="locale") String locale,
-                                      @RequestParam(value="message") String message,
+    @Secured({"ROLE_ADMIN"})
+    public ModelAndView modifyMessage(@RequestParam(value = "code") String code,
+                                      @RequestParam(value = "locale") String locale,
+                                      @RequestParam(value = "message") String message,
                                       HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
-        
+
         I18Message msg = messagesSrv.findMessage(locale, code);
         if (null == msg)
             throw new IllegalArgumentException("Message not found for code=" + code + " and locale=" + locale);
@@ -91,13 +88,9 @@ public class I18MessagesController {
     }
 
 
-    
-
     public void setMessagesSrv(I18MessagesService messagesSrv) {
         this.messagesSrv = messagesSrv;
-    } 
-    
-    
-    
-    
+    }
+
+
 }

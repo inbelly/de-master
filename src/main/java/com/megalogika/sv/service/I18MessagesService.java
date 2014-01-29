@@ -67,20 +67,25 @@ public class I18MessagesService /*implements InitializingBean*/ {
      * Resolves {@link DbMessageSource} instance (if any) from hierarchy of parent message sources.
      */
     protected DbMessageSource resolveDbMessageSource(MessageSource ms) {
-        if (null == ms)
+        if (null == ms) {
             return null;
-        if (ms instanceof DbMessageSource)
+        }
+        if (ms instanceof DbMessageSource) {
             return (DbMessageSource) ms;
-        if (ms instanceof AbstractMessageSource)
+        }
+        if (ms instanceof AbstractMessageSource) {
             return resolveDbMessageSource(((AbstractMessageSource) ms).getParentMessageSource());
-        if (ms instanceof DelegatingMessageSource)
+        }
+        if (ms instanceof DelegatingMessageSource) {
             return resolveDbMessageSource(((DelegatingMessageSource) ms).getParentMessageSource());
+        }
         return null;
     }
 
     public SortedSet<I18Message> getAllMessages() {
-        if (null == dbMessageSource)
+        if (null == dbMessageSource) {
             return new TreeSet<I18Message>();
+        }
         SortedSet<I18Message> retVal = new TreeSet<I18Message>();
         for (String code : dbMessageSource.getAllCodesSet()) {
             retVal.add(new I18Message(dbMessageSource.getMainLocale().toString(), code, dbMessageSource.getMessage(code, null, dbMessageSource.getMainLocale())));
@@ -88,13 +93,13 @@ public class I18MessagesService /*implements InitializingBean*/ {
         return retVal;
     }
 
-
     public I18Message findMessage(String locale, String code) {
         I18Message criteria = new I18Message(locale, code, null);
         Object[] values = getAllMessages().toArray();
         int pos = Arrays.binarySearch(values, criteria);
-        if (pos < 0 || pos >= values.length)
+        if (pos < 0 || pos >= values.length) {
             return null;
+        }
         return (I18Message) values[pos];
     }
 
