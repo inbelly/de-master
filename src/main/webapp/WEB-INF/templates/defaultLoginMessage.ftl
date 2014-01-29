@@ -1,1 +1,3 @@
-Vänligen ta en sekund att logga in och bidra till Inbelly.
+<#assign spring=JspTaglibs["http://www.springframework.org/tags"]>
+
+<@spring.message code="login.pleaseLogin" />

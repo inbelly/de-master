@@ -2,55 +2,61 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"]>
 
 <#function shortenString str len=16>
-	<#if str??>
-		<#if str?length <= len>
-			<#return str />
-		<#else>
-			<#if isShoppingBasketPrint?? && isShoppingBasketPrint>
-				<#return str />
-			<#else/>
-				<#return str?substring(0, len)?html + "&hellip;" />
-			</#if>
-		</#if>
-	<#else/>
-		<#return "&hellip;" />
-	</#if>
+    <#if str??>
+        <#if str?length <= len>
+            <#return str />
+        <#else>
+            <#if isShoppingBasketPrint?? && isShoppingBasketPrint>
+                <#return str />
+            <#else/>
+                <#return str?substring(0, len)?html + "&hellip;" />
+            </#if>
+        </#if>
+    <#else/>
+        <#return "&hellip;" />
+    </#if>
 </#function>
 
 <@compress>
 <#-- webflow interop hack!!! -->
-<#if currentUser?? && currentUser.principal?? >
-	<#assign currentUser = currentUser.principal >
-</#if>
+    <#if currentUser?? && currentUser.principal?? >
+        <#assign currentUser = currentUser.principal >
+    </#if>
 
-			<#-->div class="product<#if !p.approved> notapproved</#if><#if !p.approvedContent> notapprovedcontent</#if>"-->
-                            <a href="${cp}spring/product?id=${p.id}" title="${p.name?xhtml}"><img src="<#if (p.label?? && p.label.photo?? && p.label.photo?length > 0)>${cp}files/${p.label.photo}<#else/>${cp}/images/product.png</#if>" width="215" height="215" alt="${p.name?xhtml} photo" class="picture" /></a>
-                            <#if p.hazard??><img src="${cp}images/hazard-${p.hazard}.png" width="45" height="45" alt="<@spring.message code="${hazardDescriptions[p.hazard]}" />" class="hazard" title="<@spring.message code="${hazardDescriptions[p.hazard]}" />"/></#if>
-                            <h3><a href="${cp}spring/product?id=${p.id}" title="${p.name?xhtml}">${shortenString(p.name, 38)}</a></h3>
-                            <h4><a class="gray" href="${cp}spring/productList/filterByCompany?company=<#if p.company??>${p.company?url('utf-8')}</#if>" title="products by ${p.company?xhtml}"><#if p.company??>${shortenString(p.company, 56)}</#if></a></h4>
-                            <p class="additives">
-							<#if (p.conservants?? && p.conservants?size > 0)>
-								<#assign eList = "" />
-								<strong>Innehåller:</strong>
-										<#if p.conservants?size < 6 >
-											<#assign listEnd = p.conservants?size - 1>
-										<#else/>
-											<#assign listEnd = 5>
-										</#if>
-										<#list p.conservants as e>
-											<#if listEnd < e_index>
-												<#break/>
-											</#if>
-											<#assign eList = eList + e.number />
-											<#if (e_index < listEnd)>
-												<#assign eList = eList + ", ">
-											</#if>
-										</#list>
-	                             ${shortenString(eList, 20)}&nbsp;<a href="${cp}spring/product?id=${p.id}">(${p.conservants?size})</a>
-							<#else/>
-								<@spring.message code="productItem.noE" />
-							</#if>
-                            </p>
+<#-->div class="product<#if !p.approved> notapproved</#if><#if !p.approvedContent> notapprovedcontent</#if>"-->
+<a href="${cp}spring/product?id=${p.id}" title="${p.name?xhtml}"><img
+        src="<#if (p.label?? && p.label.photo?? && p.label.photo?length > 0)>${cp}files/${p.label.photo}<#else/>${cp}/images/product.png</#if>"
+        width="215" height="215" alt="${p.name?xhtml} photo" class="picture"/></a>
+    <#if p.hazard??><img src="${cp}images/hazard-${p.hazard}.png" width="45" height="45"
+                         alt="<@spring.message code="${hazardDescriptions[p.hazard]}" />" class="hazard"
+                         title="<@spring.message code="${hazardDescriptions[p.hazard]}" />"/></#if>
+<h3><a href="${cp}spring/product?id=${p.id}" title="${p.name?xhtml}">${shortenString(p.name, 38)}</a></h3>
+<h4><a class="gray"
+       href="${cp}spring/productList/filterByCompany?company=<#if p.company??>${p.company?url('utf-8')}</#if>"
+       title="products by ${p.company?xhtml}"><#if p.company??>${shortenString(p.company, 56)}</#if></a></h4>
+<p class="additives">
+    <#if (p.conservants?? && p.conservants?size > 0)>
+        <#assign eList = "" />
+        <strong>Innehåller:</strong>
+        <#if p.conservants?size < 6 >
+            <#assign listEnd = p.conservants?size - 1>
+        <#else/>
+            <#assign listEnd = 5>
+        </#if>
+        <#list p.conservants as e>
+            <#if listEnd < e_index>
+                <#break/>
+            </#if>
+            <#assign eList = eList + e.number />
+            <#if (e_index < listEnd)>
+                <#assign eList = eList + ", ">
+            </#if>
+        </#list>
+    ${shortenString(eList, 20)}&nbsp;<a href="${cp}spring/product?id=${p.id}">(${p.conservants?size})</a>
+    <#else/>
+        <@spring.message code="productItem.noE" />
+    </#if>
+</p>
 
 <#--
 					<@sec.authorize ifAllGranted="ROLE_ADMIN">
@@ -83,5 +89,5 @@
 					<img src="../img/gmo.png" class="gmo"/> 
 				</#if>
 			</div>
--->		
+-->
 </@compress>

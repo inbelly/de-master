@@ -1,5 +1,7 @@
+<#assign spring=JspTaglibs["http://www.springframework.org/tags"]>
+
 <div class="entry">
-				<p>Vi har samlat information om livsmedelstillsatser från källor som anges nedan. Vi arbetar kontinuerligt med att förbättra vår tjänst och är mycket tacksamma för påpekanden om eventuella inkonsekvenser eller fel som du stöter på. Tack på förhand!</p>
+<p><@spring.message code="dataSources.intro" /></p>
 <p><a href="http://www.foodstandards.gov.au/" target="_blank">Food Standards Australia New Zealand (FSANZ)<br />
 </a></p>
 <p><a href="http://cot.food.gov.uk/" target="_blank">The Committee on Toxicity of Chemicals in Food, Consumer Products and the Environment (COT)<br />

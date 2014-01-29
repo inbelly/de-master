@@ -3,24 +3,26 @@
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]/>
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"]>
 
-				<#if conservants??>
-					<div id="e-list" class="e-list columns-3">
-                        <div id="sort" class="clearfix">
-                            <p class="fl mbh">
-                                <strong><@spring.message code="eList.sort.sortBy"/>:</strong>
-                                <a href="${cp}spring/e/sort?orderBy=number" <#if criteria.orderBy=='number'>class="current" </#if>><@spring.message code="eList.sort.number"/></a>
-                                <a href="${cp}spring/e/sort?orderBy=category" <#if criteria.orderBy=='category'>class="current" </#if>><@spring.message code="eList.sort.hazard"/></a>
-                            </p>
-<#--                                
-                            <p class="fr mbh ico">
-                                <a href="<@spring.message code="eList.downloadPdfUrl"/>" class="pdf"><span><@spring.message code="eList.downloadPdfLink"/></span></a>
-                            </p>
--->                                
-                        </div>
-						<@tiles.insertAttribute name="eTable" />
-					</div>
-				<@tiles.insertAttribute name="categoryList" />
-				</#if>
+<#if conservants??>
+<div id="e-list" class="e-list columns-3">
+    <div id="sort" class="clearfix">
+        <p class="fl mbh">
+            <strong><@spring.message code="eList.sort.sortBy"/>:</strong>
+            <a href="${cp}spring/e/sort?orderBy=number"
+               <#if criteria.orderBy=='number'>class="current" </#if>><@spring.message code="eList.sort.number"/></a>
+            <a href="${cp}spring/e/sort?orderBy=category"
+               <#if criteria.orderBy=='category'>class="current" </#if>><@spring.message code="eList.sort.hazard"/></a>
+        </p>
+    <#--
+                                <p class="fr mbh ico">
+                                    <a href="<@spring.message code="eList.downloadPdfUrl"/>" class="pdf"><span><@spring.message code="eList.downloadPdfLink"/></span></a>
+                                </p>
+    -->
+    </div>
+    <@tiles.insertAttribute name="eTable" />
+</div>
+    <@tiles.insertAttribute name="categoryList" />
+</#if>
 
 <#--	
 		<div id="sortBar">

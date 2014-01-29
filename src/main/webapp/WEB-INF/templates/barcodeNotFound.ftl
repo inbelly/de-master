@@ -1,1 +1,3 @@
-Produkten är inte till ännu. Logga in nedan för att börja lägga produkter.
+<#assign spring=JspTaglibs["http://www.springframework.org/tags"]>
+
+<@spring.message code="search.notFound" />

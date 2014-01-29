@@ -4,8 +4,11 @@
 
 <div id="login-editing" class="editing clearfix">
     <p class="ac">
-		<h3><@spring.message code="loginError.description"/></h3>
-		<p><a href="${cp}spring/reset"><@spring.message code="loginError.lostPassword"/></a></p>
-		<p><a href="${cp}spring/register"><@spring.message code="login.registerMessage"/></a></p>
-	</p> 
+
+    <h3><@spring.message code="loginError.description"/></h3>
+
+    <p><a href="${cp}spring/reset"><@spring.message code="loginError.lostPassword"/></a></p>
+
+    <p><a href="${cp}spring/register"><@spring.message code="login.registerMessage"/></a></p>
+    </p>
 </div>
