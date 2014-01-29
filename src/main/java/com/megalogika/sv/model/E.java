@@ -1,31 +1,18 @@
 package com.megalogika.sv.model;
 
+import com.megalogika.sv.model.conversion.JsonFilterable;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
+import org.springframework.util.Assert;
+
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Where;
-import org.springframework.util.Assert;
-
-import com.megalogika.sv.model.conversion.JsonFilterable;
 
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -183,7 +170,7 @@ public class E implements Serializable, JsonFilterable {
 		setProductCount(this.products == null ? 0 : this.products.size());
 	}
 
-	@Transient
+	@Basic(fetch = FetchType.EAGER)
 	public int getProductCount() {
 		return productCount;
 	}
