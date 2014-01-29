@@ -8,7 +8,7 @@
 <div id="footer-text" class="clear">
     <p class="mb">
         <small>
-            <strong><@spring.message code="footer.contactUs" /></strong>
+            <strong><@spring.message code="footer.feedback" /></strong>
         </small>
     </p>
 
@@ -26,7 +26,7 @@
     </p>
 
     <p class="fr">
-        <a href="mailto:info@inbelly.de">Kontakta oss</a>
+        <a href="mailto:info@inbelly.de"><@spring.message code="footer.contactUs" /></a>
     </p>
 
     <p>

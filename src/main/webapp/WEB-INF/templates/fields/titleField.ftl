@@ -16,14 +16,14 @@
     lib.ready(function() {
 		jQuery("#name").editable("${cp}spring/product/updateValue",
 		 	{
-		 		tooltip	: 'Klicka för att redigera',
-		 		cancel	: 'Avbryt',
-		 		submit	: 'OK',
-		 		placeholder : 'Klicka här',
+                tooltip: '<@spring.message code="category.clickHereToEdit" />',
+                cancel: '<@spring.message code="category.clickHereToEdit" />',
+                submit: 'OK',
+                placeholder: '<@spring.message code="category.clickHere" />',
 		 		onblur : 'ignore',
 		 		id : 'field',
 		 		ajaxoptions :	{ cache : false, type : 'GET' },
-		 		indicator :		'<span class="loadingIndicator"><img src="${cp}images/ajax-loader.gif"/><b>Saving...</b></span>',
+		 		indicator :		'<span class="loadingIndicator"><img src="${cp}images/ajax-loader.gif"/><b><@spring.message code="barcode.saving" /></b></span>',
 		 		submitdata :	{id : ${product.id}, 
 					  			 unique : true },		 		
 				onerror :	function(settings, original, xhr) {

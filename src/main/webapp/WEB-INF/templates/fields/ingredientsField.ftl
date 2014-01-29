@@ -42,10 +42,10 @@
 		});    
 		jQuery("#conservantsText").editable("${cp}spring/product/updateConservants",
 		 	{
-		 		tooltip	: 'Klicka för att redigera',
-		 		cancel	: 'Avbryt',
-		 		submit	: 'OK',
-		 		placeholder : 'Klicka här',
+                tooltip: '<@spring.message code="category.clickHereToEdit" />',
+                cancel: '<@spring.message code="category.clickHereToEdit" />',
+                submit: 'OK',
+                placeholder: '<@spring.message code="category.clickHere" />',
 		 		onblur : 'ignore',
 		 		id : 'field',
 		 		type : 'autocomplete',
@@ -54,7 +54,7 @@
 		 		width: 'none',
 		 		rows: 3,
 		 		ajaxoptions :	{ cache : false, type : 'GET' },
-		 		indicator :		'<span class="loadingIndicator"><img src="${cp}images/ajax-loader.gif"/><b>Saving...</b></span>',
+		 		indicator :		'<span class="loadingIndicator"><img src="${cp}images/ajax-loader.gif"/><b><@spring.message code="barcode.saving" /></b></span>',
 		 		submitdata :	function(value, settings) {
 		 							return {id : ${product.id}, unique : false, conservantsText : jQuery("textarea", this).val() };
 		 						},		 		

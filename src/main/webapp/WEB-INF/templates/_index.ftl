@@ -16,9 +16,9 @@
             <#break/>
         </#if>
     </#list>
-    <p><a href="${cp}spring/productList?clear=yes">See all</a></p>
+    <p><a href="${cp}spring/productList?clear=yes"><@spring.message code="productList.seeAll" /></a></p>
 <#else/>
-    <p>Inga produkter</p>
+    <p><@spring.message code="productList.noProducts" /></p>
 </#if>
 </div>
 
