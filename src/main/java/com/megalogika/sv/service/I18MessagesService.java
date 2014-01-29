@@ -34,7 +34,7 @@ import java.util.TreeSet;
 //@Transactional(readOnly = true)
 public class I18MessagesService /*implements InitializingBean*/ {
 
-    private static final transient Logger log_ = Logger.getLogger(I18MessagesService.class);
+    private static final transient Logger log = Logger.getLogger(I18MessagesService.class);
 
     @PersistenceContext
     protected EntityManager em;
@@ -49,9 +49,9 @@ public class I18MessagesService /*implements InitializingBean*/ {
     public void afterPropertiesSet() throws Exception {
         dbMessageSource = resolveDbMessageSource(messageSource);
         if (null == dbMessageSource) {
-            log_.warn("DbMessageSource not found in context, I18 messages edit functions are disabled.");
+            log.warn("DbMessageSource not found in context, I18 messages edit functions are disabled.");
         } else {
-            log_.info("Loading custom messages from DB...");
+            log.info("Loading custom messages from DB...");
             @SuppressWarnings("unchecked")
             List<I18Message> messages = em.createQuery("select m from I18Message m").getResultList();
             int c = 0;
@@ -59,7 +59,7 @@ public class I18MessagesService /*implements InitializingBean*/ {
                 dbMessageSource.addDbMessageToCache(msg.getCode(), LocaleUtils.toLocale(msg.getLocale()), msg.getMessage());
                 c++;
             }
-            log_.info("Loaded " + c + " custom messages from DB");
+            log.info("Loaded " + c + " custom messages from DB");
         }
     }
 
@@ -102,7 +102,7 @@ public class I18MessagesService /*implements InitializingBean*/ {
     public void modifyMessage(I18Message message) {
         message = em.merge(message);
         if (null == dbMessageSource) {
-            log_.warn("Editing message on non-editable message source????");
+            log.warn("Editing message on non-editable message source????");
         } else {
             dbMessageSource.addDbMessageToCache(message.getCode(), LocaleUtils.toLocale(message.getLocale()), message.getMessage());
         }
