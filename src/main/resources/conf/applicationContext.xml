@@ -49,11 +49,11 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	</bean>
 	
 	<bean id="feedConfig" class="com.megalogika.sv.view.FeedConfig">
-		<property name="authorEmail" value="info@sveikasvaikas.lt" />
-		<property name="authorName" value="sveikasvaikas.lt" />
-		<property name="feedDescription" value="sveikasvaikas.lt produktų sąrašas" />
+		<property name="authorEmail" value="info@inbelly.de" />
+		<property name="authorName" value="inbelly.de" />
+		<property name="feedDescription" value="inbelly.de" />
 		<property name="feedImageUrl" value="/img/logo2.png" />
-		<property name="feedTitle" value="sveikasvaikas.lt" />
+		<property name="feedTitle" value="inbelly" />
 	</bean>
 
 	<bean id="multipartResolver"

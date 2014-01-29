@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.megalogika</groupId>
-	<artifactId>SveikasVaikas</artifactId>
+	<groupId>com.inbelly</groupId>
+	<artifactId>inbelly-de</artifactId>
 	<packaging>war</packaging>
 	<version>1.7</version>
 
@@ -18,11 +18,6 @@
 				<site.files.directory>/home/webapps/files/de.inbelly.com</site.files.directory>
 				<flowDevelopment>false</flowDevelopment>
 				<tomcatMgr>http://de.vibe.lt/manager/text</tomcatMgr>
-				<messages.locale>de_DE</messages.locale>
-				<e.dictionary.name>german_e</e.dictionary.name>
-				<dictionary.name>german</dictionary.name>
-				<site.mail.smtpHost>localhost</site.mail.smtpHost>
-				<webappPath>/</webappPath>
 				<blog.url>http://blog.inbelly.co.uk/?feed=rss2</blog.url>
 			</properties>
 		</profile>
@@ -33,13 +28,8 @@
                 <site.db.database>de_inbelly</site.db.database>
                 <site.db.username>ml</site.db.username>
                 <site.db.password>ml</site.db.password>
-                <site.files.directory>/home/webapps/files/de.inbelly.com</site.files.directory>
+                <site.files.directory>/tmp</site.files.directory>
                 <flowDevelopment>true</flowDevelopment>
-                <messages.locale>de_DE</messages.locale>
-                <e.dictionary.name>german_e</e.dictionary.name>
-                <dictionary.name>german</dictionary.name>
-                <site.mail.smtpHost>localhost</site.mail.smtpHost>
-                <webappPath>/</webappPath>
                 <blog.url>http://blog.inbelly.co.uk/?feed=rss2</blog.url>
             </properties>
         </profile>
@@ -55,11 +45,15 @@
 		<springSecurityVersion>2.0.5.RELEASE</springSecurityVersion>
 		<tilesVersion>2.1.0</tilesVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <messages.locale>de_DE</messages.locale>
+        <e.dictionary.name>german_e</e.dictionary.name>
+        <dictionary.name>german</dictionary.name>
+        <site.mail.smtpHost>localhost</site.mail.smtpHost>
+        <webappPath>/</webappPath>
+
         <!-- 
 		<site.mail.smtpHost>stoned</site.mail.smtpHost>
-		<messages.locale>en_GB</messages.locale>
-		<e.dictionary.name>english_e</e.dictionary.name>
-		<dictionary.name>english</dictionary.name>
 		<blog.url>http://blog.sveikasvaikas.lt/?feed=rss2</blog.url>
         <site.files.directory>/tmp</site.files.directory>
          -->
@@ -76,13 +70,6 @@
 			</extension>
 		</extensions>
 		<plugins>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<configuration>
-					<contextPath>/</contextPath>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
