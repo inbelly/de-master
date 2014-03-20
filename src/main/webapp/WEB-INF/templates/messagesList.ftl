@@ -27,7 +27,7 @@
                         <p class="clearfix">
                             <input type="hidden" name="code" value="${msg.code}"></input>
                             <input type="hidden" name="locale" value="${msg.locale}"></input>
-                            <textarea rows="3" cols="100" name="message" maxlength="200"
+                            <textarea rows="3" cols="100" name="message" maxlength="800"
                                       csserrorclass="error">${msg.message}</textarea>
 
                         <p><@spring.message code="messages.field.locale"/>:&nbsp;&nbsp;${msg.locale}</p>
